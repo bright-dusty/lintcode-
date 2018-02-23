@@ -11,7 +11,7 @@ public:
     /*
     * @param capacity: An integer
     */LFUCache(int capacity) :capacity(capacity)
-	{
+    {
         // do intialization if necessary
     }
 
@@ -22,28 +22,28 @@ public:
      */
     void set(int key, int value) {
         // write your code here
-			
-		auto iter = _map.find(key);
-		if (iter != _map.end()) {
-			iter->second.first = value;
-			access(iter);return ;
-		}
-		
-		if (size == capacity) {
-			int min = get_min_freq_ele();
-			pop(min);
-		}
+            
+        auto iter = _map.find(key);
+        if (iter != _map.end()) {
+            iter->second.first = value;
+            access(iter);return ;
+        }
+        
+        if (size == capacity) {
+            int min = get_min_freq_ele();
+            pop(min);
+        }
 
-		_map[key] = pair<int, int>(value, 0);
-		
-		insert(key);
-		size ++;
-		/*cout << "---" << endl;
-		for (auto iter=sorted_keys.begin(); iter!=sorted_keys.end(); iter++)
-			cout << "Key " << iter->first << " Val " <<  _map[iter->first].first
-			<< " Freq " << _map[iter->first].second << endl;
-		cout << "---" << endl;
-		assert (_map.size() == size);*/
+        _map[key] = pair<int, int>(value, 0);
+        
+        insert(key);
+        size ++;
+        /*cout << "---" << endl;
+        for (auto iter=sorted_keys.begin(); iter!=sorted_keys.end(); iter++)
+            cout << "Key " << iter->first << " Val " <<  _map[iter->first].first
+            << " Freq " << _map[iter->first].second << endl;
+        cout << "---" << endl;
+        assert (_map.size() == size);*/
     }
 
     /*
@@ -52,91 +52,91 @@ public:
      */
     int get(int key) {
         // write your code here
-		
-		map_type::iterator iter = _map.find(key);
-		
-		if (iter != _map.end()) {
-			access(iter);
-			return iter->second.first;
-		}
-		return -1;
+        
+        map_type::iterator iter = _map.find(key);
+        
+        if (iter != _map.end()) {
+            access(iter);
+            return iter->second.first;
+        }
+        return -1;
     }
-	
-	
+    
+    
 private:
-	int capacity;
-	int size = 0;
-	map_type _map;
-	
-	vector<pair<int, int>> sorted_keys ;
-	
-	int get_min_freq_ele() {
-		return sorted_keys[0].first;
-	}
-		
-	void access(map_type::iterator iter) {
-		update(iter->first);
-		iter->second.second += 1;
-	}
-	
-	void pop(int key) {
-		sorted_keys.erase(search(key));
-		_map.erase(key);
-		size --;
-	}
-	
-	void insert(int key) {
-		int bound = search(0, 0);
-		sorted_keys.insert(sorted_keys.begin()+bound, 1, pair<int, int>(key, 0));
-		
-	}
-	
-	void update(int key) {
-		vector<pair<int, int>>::iterator iter = search(key);
-		int freq = iter->second;
-		int bound = iter - sorted_keys.begin();
-		bound = search(freq+1, bound);
-		sorted_keys.erase(iter);
-		sorted_keys.insert(sorted_keys.begin()+bound-1, 1, pair<int, int>(key, freq+1));
-		
-	}
-	
-	int search(int freq, int left_bound) {
-		int right_bound = size - 1;
-		if (!sorted_keys.size())
-			return 0;
-		while (left_bound <= right_bound) {
-			int mid = (left_bound + right_bound) / 2;
-			if (sorted_keys[mid].second > freq)
-				right_bound = mid - 1;
-			else
-				left_bound = mid + 1;
-		}
+    int capacity;
+    int size = 0;
+    map_type _map;
+    
+    vector<pair<int, int>> sorted_keys ;
+    
+    int get_min_freq_ele() {
+        return sorted_keys[0].first;
+    }
+        
+    void access(map_type::iterator iter) {
+        update(iter->first);
+        iter->second.second += 1;
+    }
+    
+    void pop(int key) {
+        sorted_keys.erase(search(key));
+        _map.erase(key);
+        size --;
+    }
+    
+    void insert(int key) {
+        int bound = search(0, 0);
+        sorted_keys.insert(sorted_keys.begin()+bound, 1, pair<int, int>(key, 0));
+        
+    }
+    
+    void update(int key) {
+        vector<pair<int, int>>::iterator iter = search(key);
+        int freq = iter->second;
+        int bound = iter - sorted_keys.begin();
+        bound = search(freq+1, bound);
+        sorted_keys.erase(iter);
+        sorted_keys.insert(sorted_keys.begin()+bound-1, 1, pair<int, int>(key, freq+1));
+        
+    }
+    
+    int search(int freq, int left_bound) {
+        int right_bound = size - 1;
+        if (!sorted_keys.size())
+            return 0;
+        while (left_bound <= right_bound) {
+            int mid = (left_bound + right_bound) / 2;
+            if (sorted_keys[mid].second > freq)
+                right_bound = mid - 1;
+            else
+                left_bound = mid + 1;
+        }
 
-		return left_bound;
-	}
-	
-	vector<pair<int, int>>::iterator search(int key) {
-		map_type::iterator iter = _map.find(key);			
-		int freq = iter->second.second;
-		int bound = search(freq, 0);
-		while (bound--)
-			if (sorted_keys[bound].first == key)
-				return sorted_keys.begin() + bound;
-	}
+        return left_bound;
+    }
+    
+    vector<pair<int, int>>::iterator search(int key) {
+        map_type::iterator iter = _map.find(key);            
+        int freq = iter->second.second;
+        int bound = search(freq, 0);
+        while (bound--)
+            if (sorted_keys[bound].first == key)
+                return sorted_keys.begin() + bound;
+    }
 
-	
+    
 };
 
 int main() {
 
-	#define set(x, y) cache.set(x, y);
-	#define get(x) cout << cache.get(x) << "," ;
+    #define set(x, y) cache.set(x, y);
+    #define get(x) cout << cache.get(x) << "," ;
 
-	cout << "[";
-	LFUCache cache(105);
+    cout << "[";
+    LFUCache cache(105);
 
-	
+    
 set(33, 219)
 get(39)
 set(96, 56)

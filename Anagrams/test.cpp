@@ -42,10 +42,10 @@ public:
 };
 
 int main() {
-	vector<string> strs = 
+    vector<string> strs = 
 #include "10.in"
-	;
-	for (string &str : Solution().anagrams(strs))
-		cout << str << endl;
+    ;
+    for (string &str : Solution().anagrams(strs))
+        cout << str << endl;
 }
 

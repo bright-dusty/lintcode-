@@ -23,7 +23,7 @@ public:
         
         queue<que_t> que ;
         dict.erase(start);
-		dict.insert(end);
+        dict.insert(end);
         que.push(que_t(start, 1));
         
         auto nearest = [] (const string& a, const string& b) {
@@ -62,11 +62,11 @@ public:
 };
 
 int main() {
-	vector<string> dt = {"hot","dot","dog","lot","log"};
-	unordered_set<string> dict;
+    vector<string> dt = {"hot","dot","dog","lot","log"};
+    unordered_set<string> dict;
 
-	copy(dt.begin(), dt.end(), inserter(dict, dict.end()));
-	string s("hit"), e("cog");
-	
-	cout << Solution().ladderLength(s, e, dict);
+    copy(dt.begin(), dt.end(), inserter(dict, dict.end()));
+    string s("hit"), e("cog");
+    
+    cout << Solution().ladderLength(s, e, dict);
 }

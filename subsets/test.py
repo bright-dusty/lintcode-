@@ -16,4 +16,4 @@ class Solution:
         return reduce(lambda x, y : x+y, [list(comb(nums, n)) for n in range(0, len(nums)+1)], [])
 
 print sum([sum(i+[0]) for i in Solution().subsets(range(20))])
-		
+        

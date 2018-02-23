@@ -16,8 +16,8 @@ class TreeNode {
 class Solution {
 public:
     static string serialize(TreeNode *);
-    static TreeNode * deserialize(string &); 	
-	static void destroy (TreeNode *);
+    static TreeNode * deserialize(string &);     
+    static void destroy (TreeNode *);
 };
 
 class BSTIterator {
@@ -25,19 +25,19 @@ private:
     vector<TreeNode *> path;
 public:
 
-	void partial_visit(TreeNode *node) {
-		if (!node) return;
-		
+    void partial_visit(TreeNode *node) {
+        if (!node) return;
+        
         do {
-			path.push_back(node);
-		} while (node=node->left);
-	}
-	
+            path.push_back(node);
+        } while (node=node->left);
+    }
+    
     /*
     * @param root: The root of binary tree.
     */BSTIterator(TreeNode * root) {
         // do intialization if necessary
-		partial_visit(root);
+        partial_visit(root);
     }
 
     /*
@@ -59,20 +59,20 @@ public:
         node = path.back();
         path.pop_back();
         if (node->right)
-			partial_visit(node->right);
+            partial_visit(node->right);
         return node;
     }
 };
 
 
 int main()  {
-	string line;
+    string line;
     
     getline(cin, line);
-	TreeNode *root = Solution::deserialize(line);
-	auto iter = BSTIterator(root);
-	while (iter.hasNext()) {
-		cout << iter.next()->val << endl;
-	}
-	Solution::destroy(root);
+    TreeNode *root = Solution::deserialize(line);
+    auto iter = BSTIterator(root);
+    while (iter.hasNext()) {
+        cout << iter.next()->val << endl;
+    }
+    Solution::destroy(root);
 }

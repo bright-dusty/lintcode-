@@ -25,7 +25,7 @@ public:
 
 
 int main() {
-	int cap = 12;
-	vector<int> items = {2, 3, 5, 7, 1};
-	cout << Solution().backPack(cap, items);
+    int cap = 12;
+    vector<int> items = {2, 3, 5, 7, 1};
+    cout << Solution().backPack(cap, items);
 }

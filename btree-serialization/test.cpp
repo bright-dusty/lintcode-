@@ -57,56 +57,56 @@ string Solution::serialize(TreeNode * root) {
 
 TreeNode * Solution::deserialize(string &data) {
     if (data.length() < 3) return nullptr;
-	std::vector<std::string> slices;
-	char comma = ',';
-	size_t pos1 = 1, pos2;
-	pos2 = data.find(comma, pos1);
-	while (std::string::npos != pos2) {
-		slices.push_back(data.substr(pos1, pos2-pos1));
+    std::vector<std::string> slices;
+    char comma = ',';
+    size_t pos1 = 1, pos2;
+    pos2 = data.find(comma, pos1);
+    while (std::string::npos != pos2) {
+        slices.push_back(data.substr(pos1, pos2-pos1));
 
-		pos1 = pos2 + 1;
-		pos2 = data.find(comma, pos1);
-	}
-	string tmp = data.substr(pos1, data.length()-1-pos1);
-	if(!tmp.empty()) slices.push_back(tmp);
-	
-	if (!slices.size())
-		return nullptr;
-	
-	size_t cur = 0;
-	stringstream stream(slices[cur]);
-	TreeNode *node = new TreeNode(0);
-	stream >> node->val ;
-	std::queue<TreeNode *> back;
-	back.push(node);
-	TreeNode *root = node;
-	while (back.size() && cur < slices.size()) {
-		node = back.front();back.pop();
-		size_t l = ++cur;
-		size_t r = ++cur;
-		#define link_node(x, pos) \
-		if (x < slices.size() && slices[x] != "#") { \
-			TreeNode *child = new TreeNode(0); \
-			stringstream stream(slices[x]); \
-			stream >> child->val; \
-			node->pos = child; \
-			back.push(child); \
-		}
-			
-		link_node(l, left);
-		link_node(r, right)
-		#undef link_node
+        pos1 = pos2 + 1;
+        pos2 = data.find(comma, pos1);
+    }
+    string tmp = data.substr(pos1, data.length()-1-pos1);
+    if(!tmp.empty()) slices.push_back(tmp);
+    
+    if (!slices.size())
+        return nullptr;
+    
+    size_t cur = 0;
+    stringstream stream(slices[cur]);
+    TreeNode *node = new TreeNode(0);
+    stream >> node->val ;
+    std::queue<TreeNode *> back;
+    back.push(node);
+    TreeNode *root = node;
+    while (back.size() && cur < slices.size()) {
+        node = back.front();back.pop();
+        size_t l = ++cur;
+        size_t r = ++cur;
+        #define link_node(x, pos) \
+        if (x < slices.size() && slices[x] != "#") { \
+            TreeNode *child = new TreeNode(0); \
+            stringstream stream(slices[x]); \
+            stream >> child->val; \
+            node->pos = child; \
+            back.push(child); \
+        }
+            
+        link_node(l, left);
+        link_node(r, right)
+        #undef link_node
 
-	} 
-		
-	return root;
+    } 
+        
+    return root;
 }
     
 void Solution::destroy (TreeNode * root) {
-	if (!root) return;
-	destroy(root->left);
-	destroy(root->right);
-	delete root;
+    if (!root) return;
+    destroy(root->left);
+    destroy(root->right);
+    delete root;
 }
 /*
 int main() {

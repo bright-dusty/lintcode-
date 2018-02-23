@@ -23,17 +23,17 @@ public:
         {
             // choose a larger one between current number or (previous sum + current number).
             if (sum <= 0)
-				sum = nums[i];
-			else
-				sum += nums[i];
+                sum = nums[i];
+            else
+                sum += nums[i];
             max = std::max(max, sum);    // choose the larger max.
         }
  
-	return max;}
+    return max;}
 };
 
 
 int main () {
-	vector <int> nums = {-2,2,-3,4,-1,2,1,-5,3};
-	cout << Solution().maxSubArray(nums);
+    vector <int> nums = {-2,2,-3,4,-1,2,1,-5,3};
+    cout << Solution().maxSubArray(nums);
 }

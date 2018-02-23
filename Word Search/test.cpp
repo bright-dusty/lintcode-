@@ -38,7 +38,7 @@ public:
                     auto key = pair<ssize_t, ssize_t>(r, c);
                     matched_postions_vec.push_back(key);
                     matched_postions[key] = true;
-					vector<int> skip = {0};
+                    vector<int> skip = {0};
                     while (!matched_postions_vec.empty()) {
                         if (matched_postions_vec.size() == word.length())
                             return true;
@@ -50,26 +50,26 @@ public:
                             make_pair(dim.first, dim.second+1)
                         };
                         bool matched = false;
-						int index = 0;
+                        int index = 0;
                         for (auto dim : avail_pos) {
                             ssize_t i = dim.first,
                                     j = dim.second;
-							if (index ++ < skip.back())
-								continue;
-							skip[skip.size()-1] += 1;
+                            if (index ++ < skip.back())
+                                continue;
+                            skip[skip.size()-1] += 1;
                             if (out_of_bound(i, j) || dup(i, j) || board[i][j] != word[matched_postions_vec.size()]) { }
                             else  {
                                 matched = true;
-								skip.push_back(0);
+                                skip.push_back(0);
                                 matched_postions_vec.push_back(dim);
                                 matched_postions[dim] = true;
-								break;
+                                break;
                             }
                         }
                         if (!matched) {
                             skip.pop_back();
                             matched_postions.erase(matched_postions_vec.back());
-							matched_postions_vec.pop_back();
+                            matched_postions_vec.pop_back();
                         }
                         
                             
@@ -81,16 +81,16 @@ public:
             
         }
     
-		return false;
-	}
+        return false;
+    }
 };
 
 int main() {
-	vector <vector<char>> board = {
-		{'A', 'B', 'C', 'E'},
-		{'S', 'F', 'C', 'S'},
-		{'A', 'D', 'E', 'E'}
-	};
-	string s("ABCESEEDASA");
-	cout << Solution().exist(board, s);
+    vector <vector<char>> board = {
+        {'A', 'B', 'C', 'E'},
+        {'S', 'F', 'C', 'S'},
+        {'A', 'D', 'E', 'E'}
+    };
+    string s("ABCESEEDASA");
+    cout << Solution().exist(board, s);
 }

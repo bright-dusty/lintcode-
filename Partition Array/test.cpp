@@ -24,20 +24,20 @@ public:
             swap(nums[j+1], nums[p]);
         return j + 1;
     }
-	
-	void sort(vector<int> &arr, int s, int e) {
-		if (s >= e) return;
-		
-		int p = partitionArray(arr, arr[e], s, e);
-		
-		sort(arr, s, p-1);
-		sort(arr, p+1, e);
-	}
+    
+    void sort(vector<int> &arr, int s, int e) {
+        if (s >= e) return;
+        
+        int p = partitionArray(arr, arr[e], s, e);
+        
+        sort(arr, s, p-1);
+        sort(arr, p+1, e);
+    }
 };
 
 int main() {
-	vector<int> arr = {9,9,9,8,9,8,7,9,8,8,8,9,8,9,8,8,6,9};
-	Solution().sort(arr, 0, arr.size()-1) ;
-	for (int x : arr)
-		cout << x << " " ;
+    vector<int> arr = {9,9,9,8,9,8,7,9,8,8,8,9,8,9,8,8,6,9};
+    Solution().sort(arr, 0, arr.size()-1) ;
+    for (int x : arr)
+        cout << x << " " ;
 }

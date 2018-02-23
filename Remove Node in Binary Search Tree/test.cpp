@@ -60,7 +60,7 @@ public:
                     
                     int biggestVal = biggestInLeft->val;
                     if (parentOfBiggest->val == biggestInLeft->val)
-						throw runtime_error("Duplicated values");
+                        throw runtime_error("Duplicated values");
                     destroyNode(parentOfBiggest, biggestInLeft->val);
                     cur->val = biggestVal;
                     
@@ -95,14 +95,14 @@ int main () {
     cin >> removal; cin.get();
     
     TreeNode *root = Solution::deserialize(line);
-	try {
-		root = Solution::destroyNode(root, removal);
-	} catch (runtime_error err) {
-		static void *hdl = dlopen("/cygdrive/c/Windows/System32/user32.dll", RTLD_LAZY);
-		if (hdl)
-			((MessageBoxA)dlsym(hdl, "MessageBoxA"))(0, err.what(), "Error", 0x10);
-		cout << "Err: " << err.what() << endl;
-	}
+    try {
+        root = Solution::destroyNode(root, removal);
+    } catch (runtime_error err) {
+        static void *hdl = dlopen("/cygdrive/c/Windows/System32/user32.dll", RTLD_LAZY);
+        if (hdl)
+            ((MessageBoxA)dlsym(hdl, "MessageBoxA"))(0, err.what(), "Error", 0x10);
+        cout << "Err: " << err.what() << endl;
+    }
     
     cout << Solution::serialize(root) << endl;
     Solution::destroy(root);

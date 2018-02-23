@@ -17,12 +17,12 @@ public:
             if (s >= e-1) return 0;
             int m = (s + e) / 2;
             //if (m-1 > 0 && m+1 < A.size())
-	
+    
             if (A[m-1] < A[m] && A[m+1] < A[m])
                 return m;
             int r = peak(m, e);
             if (r) return r;
-			int l = peak(s, m);
+            int l = peak(s, m);
             if (l) return l;
             
         };
@@ -32,8 +32,8 @@ public:
 };
 
 int main() { 
-	vector<int> A = 
+    vector<int> A = 
 #include "13.in"
 ;
-	cout << Solution().findPeak(A);
+    cout << Solution().findPeak(A);
 }
