@@ -2,7 +2,7 @@ import os
 
 for path, _, files in os.walk("."):
     for fname in files:
-        if fname.endswith(".py") or fname.endswith(".cpp"):
+        if fname.endswith(".py") or fname.endswith(".cpp") or fname.endswith(".c"):
             f = os.path.join(path, fname)
             with open(f) as _f:
                 data = _f.read()
