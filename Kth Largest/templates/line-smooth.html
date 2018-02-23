@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html style="height: 100%">
+   <head>
+       <meta charset="utf-8">
+   </head>
+   <body style="height: 100%; margin: 0">
+
+       <div id="dom" style="width: 80%;height: 80%; display:inline-block"></div>
+
+       <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts/echarts.min.js"></script>
+       <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts-gl/echarts-gl.min.js"></script>
+       <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts-stat/ecStat.min.js"></script>
+       <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts/extension/dataTool.min.js"></script>
+       <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts/map/js/china.js"></script>
+       <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts/map/js/world.js"></script>
+       <script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=ZUONbpqGBsYGXNIYHicvbAbM"></script>
+       <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts/extension/bmap.min.js"></script>
+       <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/simplex.js"></script>
+       <script type="text/javascript">
+
+var dom = echarts.init(document.getElementById("dom"));
+{% autoescape false %}
+option = {
+    title: {
+        text: 'Sort'
+    },
+	tooltip: {
+        trigger: 'axis'
+    },
+    xAxis: {
+        type: 'category',
+        boundaryGap: false,
+        data: {{scales}}
+    },
+    yAxis: {
+        type: 'value'
+    },
+	legend: {
+        data:{{keys}}
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    series: {{results}}
+};
+;
+if (option && typeof option === "object") {
+    dom.setOption(option, true);
+}
+{% endautoescape %}
+
+       </script>
+   </body>
+</html>
