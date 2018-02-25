@@ -1,7 +1,9 @@
-#include <cstring>
 #include <string>
 #include <iostream>
-#include <ctime>
+#include <algorithm>
+
+#include <cstring>
+
 #include <sys/time.h>
 #include <assert.h>
 
@@ -25,7 +27,7 @@ public:
         if (!source || !target)
             return -1;
         ssize_t map[256] ;
-        memset(map, -1, sizeof(map));
+        std::fill_n(map, 256, -1);
 
         size_t target_len = prepare(map, target);
         size_t src_len = strlen(source);

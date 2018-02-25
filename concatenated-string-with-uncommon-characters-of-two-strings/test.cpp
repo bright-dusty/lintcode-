@@ -1,6 +1,8 @@
 #include <string>
 #include <sstream>
 #include <iostream>
+#include <algorithm>
+
 #include <memory.h>
 
 using namespace std;
@@ -20,8 +22,8 @@ public:
         // write your code here
         int  tmp1[256], tmp2[256];
         
-        memset(tmp1, -1, sizeof(tmp1));
-        memset(tmp2, -1, sizeof(tmp2));
+        fill_n(tmp1, 256, -1);
+        fill_n(tmp2, 256, -1);
         prepare(tmp1, s1);
         prepare(tmp2, s2);
         
