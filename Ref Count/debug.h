@@ -12,7 +12,7 @@
 			  "\x1b[97m" << *ps << "\x1b[39m"\
 			  << std::endl;
 #define _ref() _e("\x1b[32mref")
-#define _undef() _e("\x1b[33mundef")
+#define _undef() _e("\x1b[33munref")
 #define _del() _e("\x1b[31mdelete")
 
 #else
