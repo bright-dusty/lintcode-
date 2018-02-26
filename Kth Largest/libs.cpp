@@ -1,7 +1,7 @@
 #include <ctime>
 #include <sys/time.h>
 #include <cstdio>
-#include "MergeSort.cpp"
+#include "QuickSort.cpp"
 
 extern "C" {
     
@@ -13,7 +13,7 @@ extern "C" {
         double span = (t1.tv_sec - t0.tv_sec) * 1000.0 + 
                       (t1.tv_usec - t0.tv_usec) / 1000.0 ;
         
-        //printf("Method : %s\n", "MergeSort");
+        //printf("Method : %s\n", "QuickSort");
         //printf("Scale : %d\n", n);
         //printf("Cost : %.2f ms\n", span);
         return span;
