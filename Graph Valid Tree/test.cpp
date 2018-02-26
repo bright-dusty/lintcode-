@@ -2,6 +2,7 @@
 #include <map>
 #include <queue>
 #include <algorithm>
+#include <memory>
 #include <iostream>
 
 using namespace std;
@@ -27,29 +28,10 @@ public:
                 swap(i, j);
             }
         }
-        if (forest(n, map)) return false;
-        auto has_one_neighbor = [&]() {
-            for (auto &kv : map)
-                if (kv.second.size() <= 1)
-                    return kv.first;
-            return -1;
-        };
-        int k;
-        while ((k=has_one_neighbor()) != -1) {
-            for (int j : map[k])
-                map[j].erase(find(map[j].begin(), map[j].end(), k));
-            map.erase(k);
-        }
+        if (n < 2) return true;
+        if (map.empty()) return false; // forest
         
-        
-        return map.empty();
-            
-            
-    }
-    bool forest(int n, map<int, vector<int>> &map) {
-        if (n < 2) return false;
-        if (map.empty()) return true;
-        int *visited = new int[n]();
+        unique_ptr<int[]> visited(new int[n]());
         queue<int> que;
         que.push(map.begin()->first);
         int cnt = 0;
@@ -58,16 +40,26 @@ public:
             que.pop();
             if (!visited[k]) {
                 if (map.find(k) != map.end())
-                    for (auto node : map[k])
+                    for (auto node : map[k]) {
+                        map[node].erase(find(map[node].begin(), map[node].end(), k));
                         que.push(node);
+                    }
+                        
                 cnt ++;
+            } else { // graph
+                return false;
             }
             visited[k] = 1;
         }
+
+        if (cnt != n)
+            return false; // forest
         
-        delete [] visited;
-        return cnt != n;
+        return true; // tree
+        
+            
     }
+    
 
 };
 
