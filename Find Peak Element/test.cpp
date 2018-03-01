@@ -14,16 +14,15 @@ public:
         // write your code here
         function<int(int, int)> peak = [&](int s, int e) -> int
         {
-            if (s >= e-1) return 0;
+            if (s >= e) return 0;
             int m = (s + e) / 2;
-            //if (m-1 > 0 && m+1 < A.size())
     
             if (A[m-1] < A[m] && A[m+1] < A[m])
                 return m;
-            int r = peak(m, e);
-            if (r) return r;
-            int l = peak(s, m);
-            if (l) return l;
+			if (A[m] < A[m+1])
+				return peak(m+1, e);
+			else
+				return peak(s, m);
             
         };
         
@@ -33,7 +32,7 @@ public:
 
 int main() { 
     vector<int> A = 
-#include "13.in"
+	{1,2,1,3,4,5,7,6}
 ;
     cout << Solution().findPeak(A);
 }
