@@ -17,7 +17,7 @@ public:
         for (int i=0; i < nums.size(); i++) {
             if (nums[i] < k)
                 swap(nums[++j], nums[i]);
-            else if (nums[i] == k && p == -1)
+			if (nums[i] == k)
                 p = i;
         }
         if (p != -1)
@@ -27,8 +27,8 @@ public:
 };
 
 int main() {
-    vector<int> nums = {2, 3, 4, 1, 4, 6, 8};
-    cout << Solution().partitionArray(nums, 8) << endl;
+    vector<int> nums = {12,15,1,18,2,35,30,11};
+    cout << Solution().partitionArray(nums, 15) << endl;
     for (int n : nums)
         cout << n << " ";
     cout << endl;
