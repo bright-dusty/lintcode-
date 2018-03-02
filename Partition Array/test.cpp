@@ -17,7 +17,7 @@ public:
         for (int i=0; i < nums.size(); i++) {
             if (nums[i] < k)
                 swap(nums[++j], nums[i]);
-			if (nums[i] == k)
+            if (nums[i] == k)
                 p = i;
         }
         if (p != -1)
