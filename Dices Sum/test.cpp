@@ -16,9 +16,9 @@ public:
         assert (n);
         auto sums = dices_throw_once();
         for (int i=2; i <= n; i++) {
-            vector<pair<int, double>> sum ;
+            vector<pair<int, double>> sum (6*i, {0, 0});
             for (int j=1; j <= 6*i; j++) {
-                sum.push_back({j, 0});    
+                sum[j-1].first = j;    
             }
             for (auto &item1 : sums.back())
                 for (auto &item2 : sums[0])
