@@ -7,7 +7,7 @@ for path, dirs, files in os.walk("."):
             new_name = " ".join([word[0].upper()+word[1:] for word in new_name])
             if new_name != dir:
                 os.rename(dir, new_name)
-                print ("rename dir %s to %s" % (dir, new_name))
+                print ("rename dir from %s to %s" % (dir, new_name))
     for fname in files:
         if fname.endswith(".py") or fname.endswith(".cpp") or fname.endswith(".c") or fname.endswith(".h"):
             f = os.path.join(path, fname)
