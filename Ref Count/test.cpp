@@ -11,7 +11,7 @@ public:
     RefPtr(const T &s) :
         ps(new T(s)), use(new size_t (1)) { _ref() }
     RefPtr(const T *s=new T) :
-        ps(new T(*s)), use(new size_t (1)) { delete s; _ref() }
+        ps(s), use(new size_t (1)) { _ref() }
     // copy constructor copies all three data members and increments the counter
     RefPtr(const RefPtr &p) :
         ps(p.ps), use(p.use) {  ++ *use; _ref() }
